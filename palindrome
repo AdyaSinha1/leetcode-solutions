@@ -1,0 +1,32 @@
+class Solution {
+
+    // Function to check whether a number is a palindrome
+    public boolean isPalindrome(int x) {
+
+        // Negative numbers cannot be palindrome
+        if(x < 0)
+            return false;
+
+        // Store original number
+        int org = x;
+
+        // Variable to store reversed number
+        int rev = 0;
+
+        // Reverse the number
+        while(x != 0) {
+
+            // Extract last digit
+            int digit = x % 10;
+
+            // Build reversed number
+            rev = rev * 10 + digit;
+
+            // Remove last digit from original number
+            x = x / 10;
+        }
+
+        // Check if original and reversed numbers are same
+        return org == rev;
+    }
+}
