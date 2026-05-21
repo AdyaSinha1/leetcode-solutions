@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+class Solution {
+
+    // Function to find two indices whose values add up to target
+    public int[] twoSum(int[] nums, int target) {
+
+        // Loop through each element
+        for(int i = 0; i < nums.length; i++) {
+
+            // Compare current element with remaining elements
+            for(int j = i + 1; j < nums.length; j++) {
+
+                // Check if the sum equals target
+                if(nums[i] + nums[j] == target) {
+
+                    // Return indices of the two numbers
+                    return new int[] {i, j};
+                }
+            }
+        }
+
+        // Return empty array if no solution is found
+        return new int[] {};
+    }
+}
