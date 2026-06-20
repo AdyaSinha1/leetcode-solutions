@@ -1,0 +1,39 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        // ✅ Edge case: if the array is empty, there are no unique elements
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        // ✅ 'i' is the slow pointer:
+        // It tracks the position of the last unique element found.
+        int i = 0;
+
+        // ✅ 'j' is the fast pointer:
+        // It scans through the array starting from index 1.
+        for (int j = 1; j < nums.length; j++) {
+            // If the current element nums[j] is different from nums[i],
+            // it means we found a new unique element.
+            if (nums[j] != nums[i]) {
+                // Move the slow pointer forward to make space for the new unique element.
+                i++;
+                // Copy the unique element to the position after the last unique element.
+                nums[i] = nums[j];
+            }
+            // If nums[j] == nums[i], it's a duplicate → skip it.
+        }
+
+        // ✅ The number of unique elements is (i + 1),
+        // because 'i' is zero-based index of the last unique element.
+        return i + 1;
+    }
+}
+
+\\  Time Complexity: 
+    𝑂(𝑛) → single pass through the array.
+
+\\  Space Complexity: 
+    𝑂(1) → in-place, no extra storage.
+
+\\ Two-pointer technique:
+   Efficient way to handle sorted arrays with duplicates.
