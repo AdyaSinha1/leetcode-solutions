@@ -1,0 +1,38 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        // ✅ Edge case: if the array is empty, there are no elements to remove
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        // ✅ 'i' is the slow pointer:
+        // It represents the position where the next non-val element should be placed.
+        int i = 0;
+
+        // ✅ 'j' is the fast pointer:
+        // It scans through every element in the array.
+        for (int j = 0; j < nums.length; j++) {
+            // If the current element is NOT equal to val,
+            // we keep it in the array.
+            if (nums[j] != val) {
+                // Place the non-val element at index 'i'
+                nums[i] = nums[j];
+                // Move 'i' forward to prepare for the next non-val element.
+                i++;
+            }
+            // If nums[j] == val, skip it (do not copy).
+        }
+
+        // ✅ The number of elements that are NOT equal to val is 'i',
+        // because 'i' tracks how many valid elements we placed.
+        return i; 
+    }
+}
+
+\\ Time Complexity: 
+   𝑂(𝑛) → single pass through the array.
+
+\\ Space Complexity: 
+   𝑂(1) → in-place, no extra storage.
+
+\\  Two-pointer technique: Efficient way to filter out unwanted values.
