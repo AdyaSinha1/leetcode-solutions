@@ -1,0 +1,41 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        // ✅ Initialize search boundaries
+        int l = 0;                     // Left pointer (start of array)
+        int r = nums.length - 1;       // Right pointer (end of array)
+
+        // ✅ Standard binary search loop
+        while (l <= r) {
+            // Midpoint calculation (avoids overflow compared to (l+r)/2)
+            int m = l + (r - l) / 2;
+
+            // If target is found at mid, return its index
+            if (nums[m] == target) {
+                return m;
+            }
+
+            // If target is smaller than nums[m],
+            // it must be in the left half → move right pointer left
+            if (nums[m] > target) {
+                r = m - 1;
+            } else {
+                // Otherwise, target is greater → move left pointer right
+                l = m + 1;
+            }
+        }
+
+        // ✅ If target is not found:
+        // 'l' will be the correct insertion position
+        // because it points to the first element greater than target
+        return l;
+    }
+}
+
+
+\\ Time Complexity: 
+   𝑂(log𝑛) → binary search.
+
+\\ Space Complexity: 
+   𝑂(1)
+
+\\ Returns either the index of target if found, or the insertion position to keep the array sorted.
