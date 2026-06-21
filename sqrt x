@@ -1,0 +1,27 @@
+class Solution {
+    public int mySqrt(int x) {
+        if (x < 2) return x;   // Quick return for 0 and 1
+
+        int l = 1;
+        int r = x / 2;         // sqrt(x) ≤ x/2 for x > 1
+        int ans = 0;           // to store floor value
+
+        while (l <= r) {       // correct loop condition
+            int m = l + (r - l) / 2;
+
+            if ((long)m * m == x) {   // exact match
+                return m;
+            }
+            if ((long)m * m > x) {
+                r = m - 1;     // shrink right boundary
+            } else {
+                ans = m;       // possible floor value
+                l = m + 1;     // move left boundary
+            }
+        }
+        return ans;            // return floor of sqrt(x)
+    }
+}
+
+\\ Time Complexity: 𝑂(log⁡𝑥)
+\\ Space Complexity: 𝑂(1) (constant space)
