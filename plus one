@@ -1,3 +1,4 @@
+//code 1
 class Solution {
     public int[] plusOne(int[] digits) {
 
@@ -25,3 +26,43 @@ class Solution {
         }
     }
 }
+_______________________________________________________________________________________________________________________________
+//code 2
+class Solution {
+    public int[] plusOne(int[] digits) {
+        // Traverse the array from the last digit backwards
+        for (int i = digits.length - 1; i >= 0; i--) {
+            // Case 1: If current digit is less than 9, just increment it
+            if (digits[i] < 9) {
+                digits[i]++;       // add one
+                return digits;     // no carry needed, return immediately
+            }
+            // Case 2: If current digit is 9, set it to 0 and carry over
+            digits[i] = 0;
+        }
+
+        // Case 3: If we finish the loop, it means all digits were 9
+        // Example: [9,9,9] → [0,0,0] → need new array [1,0,0,0]
+        int[] result = new int[digits.length + 1];
+        result[0] = 1;  // first digit becomes 1, rest default to 0
+        return result;
+    }
+}
+
+__________________________________________________________________________________________________________________________________
+
+✨ Realisation-
+
+Forward logic: It first checked the last digit, then nested a carry loop. It works, but it’s a bit verbose.
+Backward optimal logic: Realised I can collapse that into one clean backward loop:
+If a digit < 9, increment and return immediately.
+If it’s 9, set to 0 and keep carrying left.
+If all digits are 9, allocate a new array with one extra slot and set the first digit to 1.
+
+✅ Why It’s Optimal-
+
+Single pass: Only one backward loop, no nested structures.
+Early exit: As soon as a digit < 9 is found, you stop.
+Elegant handling: The all-9s case is neatly handled at the end.
+Time complexity: 𝑂(𝑛) worst case, but often exits much earlier.
+Space complexity: 𝑂(1) extra space, except when a new array is needed.
