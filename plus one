@@ -1,0 +1,27 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+
+        // Case 1: If the last digit is less than 9, just increment it and return
+        if (digits[digits.length - 1] < 9) {
+            digits[digits.length - 1] += 1;  // add one to the last digit
+            return digits;                   // no carry needed
+        } else {
+            // Case 2: If the last digit is 9, set it to 0 and handle carry
+            digits[digits.length - 1] = 0;
+
+            // Traverse backwards from the second-last digit
+            for (int j = digits.length - 2; j >= 0; j--) {
+                if (digits[j] < 9) {
+                    digits[j] += 1;  // increment this digit
+                    return digits;   // carry resolved, return result
+                }
+                digits[j] = 0;       // if it's 9, set to 0 and continue carrying
+            }
+
+            // Case 3: If all digits were 9 (e.g., 999 → 1000)
+            int[] result = new int[digits.length + 1];
+            result[0] = 1;           // first digit becomes 1, rest default to 0
+            return result;
+        }
+    }
+}
