@@ -1,0 +1,32 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        // Default answer if target not found
+        int[] ans = {-1, -1};
+        int l = 0, r = nums.length - 1;
+
+        //  First binary search: find first occurrence (left boundary)
+        while (l <= r) {
+            int m = l + (r - l) / 2;   // midpoint
+            if (nums[m] >= target) r = m - 1; // move left if nums[m] >= target
+            else l = m + 1;            // move right if nums[m] < target
+            if (nums[m] == target) ans[0] = m; // record index if target found
+        }
+
+        // Reset pointers for second search
+        l = 0; r = nums.length - 1;
+
+        //  Second binary search: find last occurrence (right boundary)
+        while (l <= r) {
+            int m = l + (r - l) / 2;   // midpoint
+            if (nums[m] <= target) l = m + 1; // move right if nums[m] <= target
+            else r = m - 1;            // move left if nums[m] > target
+            if (nums[m] == target) ans[1] = m; // record index if target found
+        }
+
+        // Return both boundaries (or [-1,-1] if not found)
+        return ans;
+    }
+}
+
+\\ Time complexity: O(log n)
+\\ Space: O(1).
