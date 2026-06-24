@@ -1,0 +1,22 @@
+class Solution {
+    public int findMin(int[] nums) {
+        int l = 0, r = nums.length - 1;
+        
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            
+            // If mid element is greater than rightmost, min is in right half
+            if (nums[mid] > nums[r]) {
+                l = mid + 1;
+            } else {
+                // Otherwise, min is in left half (including mid)
+                r = mid;
+            }
+        }
+        
+        // At the end, l == r → minimum element
+        return nums[l];
+    }
+}
+\\ 
+This algorithm runs in O(log n) time and O(1) space.
