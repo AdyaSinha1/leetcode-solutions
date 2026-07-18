@@ -1,20 +1,31 @@
 class Solution {
     public int search(int[] nums, int target) {
-       int l=0;
-       int r=nums.length-1;
-       while(l<=r){
-        int m=l+(r-l)/2;
-        if(nums[m]==target){
-            return m;
+        // Initialize two pointers: left (l) at the start, right (r) at the end of the array
+        int l = 0;
+        int r = nums.length - 1;
+
+        // Continue searching while the search space is valid
+        while (l <= r) {
+            // Find the middle index (avoid overflow with l + (r - l) / 2)
+            int m = l + (r - l) / 2;
+
+            // If the middle element is the target, return its index
+            if (nums[m] == target) {
+                return m;
+            }
+
+            // If the middle element is greater than target,
+            // move the right pointer to search the left half
+            if (nums[m] > target) {
+                r = m - 1;
+            } else {
+                // Otherwise, move the left pointer to search the right half
+                l = m + 1;
+            }
         }
-        if (nums[m]>target){
-            r=m-1;
-        }
-        else{
-            l=m+1;
-        }
-       } 
-       return -1;
+
+        // If the target is not found, return -1
+        return -1;
     }
 }
 
